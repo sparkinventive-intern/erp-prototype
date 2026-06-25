@@ -241,6 +241,34 @@ import {
   StudentManagement, StaffManagement, MarksEntry, AuditLog,
 } from './pages/crudPages.jsx'
 
+// Staff / Faculty portal bespoke pages
+import {
+  FacultyInformation, DepartmentDetails, WorkloadManagement, ClassAllocation,
+  ResearchActivities, PublicationDetails,
+} from './pages/staff/faculty.jsx'
+import { TeachingSchedule, TimetableManagement } from './pages/staff/schedule.jsx'
+import {
+  StudentList, AttendanceManagement, AssignmentEvaluation, PerformanceAnalytics,
+  StudentFeedback as StaffStudentFeedback, CounselingNotes, WeakStudents,
+} from './pages/staff/students.jsx'
+import {
+  CourseManagement, SubjectAllocation, QuestionPaperUpload, StudyMaterialUpload,
+  LabManagement, ProjectReviews,
+} from './pages/staff/academics.jsx'
+import {
+  ExamDutyAllocation, HallAllocation, ResultProcessing as StaffResultProcessing,
+  RevaluationRequests, ExamReports,
+} from './pages/staff/exams.jsx'
+import {
+  StudentNotifications, Announcements, DepartmentCirculars, ParentCommunication,
+} from './pages/staff/communication.jsx'
+import {
+  EngagementAnalytics, AttendanceAnalytics, PerformancePrediction, RiskStudentDetection,
+} from './pages/staff/analytics.jsx'
+import {
+  AutomatedReminders, DocumentSharing, TaskScheduling, ApprovalWorkflows,
+} from './pages/staff/workflow.jsx'
+
 // Role dashboard chosen by port/role.
 const DASHBOARDS = {
   student: Dashboard,
@@ -290,7 +318,52 @@ const STUDENT_PAGES = {
 
 // Bespoke pages for staff / admin / super admin (slug → component).
 const STAFF_PAGES = {
+  // Faculty Management
+  'faculty-information': FacultyInformation,
+  'department-details': DepartmentDetails,
+  'teaching-schedule': TeachingSchedule,
+  'workload-management': WorkloadManagement,
+  'class-allocation': ClassAllocation,
+  'research-activities': ResearchActivities,
+  'publication-details': PublicationDetails,
+  // Student Management
+  'student-list': StudentList,
+  'attendance-management': AttendanceManagement,
   'internal-marks-entry': MarksEntry,
+  'assignment-evaluation': AssignmentEvaluation,
+  'performance-analytics': PerformanceAnalytics,
+  'student-feedback': StaffStudentFeedback,
+  'student-counseling-notes': CounselingNotes,
+  'weak-student-identification': WeakStudents,
+  // Academic Management
+  'course-management': CourseManagement,
+  'subject-allocation': SubjectAllocation,
+  'timetable-management': TimetableManagement,
+  'question-paper-upload': QuestionPaperUpload,
+  'study-material-upload': StudyMaterialUpload,
+  'lab-management': LabManagement,
+  'project-reviews': ProjectReviews,
+  // Examinations
+  'exam-duty-allocation': ExamDutyAllocation,
+  'hall-allocation': HallAllocation,
+  'result-processing': StaffResultProcessing,
+  'revaluation-requests': RevaluationRequests,
+  'exam-reports': ExamReports,
+  // Communication
+  'student-notifications': StudentNotifications,
+  'announcements': Announcements,
+  'department-circulars': DepartmentCirculars,
+  'parent-communication': ParentCommunication,
+  // AI Analytics
+  'student-engagement-analytics': EngagementAnalytics,
+  'attendance-analytics': AttendanceAnalytics,
+  'performance-prediction': PerformancePrediction,
+  'risk-student-detection': RiskStudentDetection,
+  // Workflow Automation
+  'automated-reminders': AutomatedReminders,
+  'document-sharing': DocumentSharing,
+  'task-scheduling': TaskScheduling,
+  'approval-workflows': ApprovalWorkflows,
 }
 const ADMIN_PAGES = {
   'student-management': StudentManagement,
