@@ -1,0 +1,82 @@
+// Attendance module — shared presentational parts.
+import { motion } from 'framer-motion'
+import { Icon, EASE } from '../components/ui.jsx'
+
+export const CHART_TOOLTIP = {
+  contentStyle: {
+    background: '#0C1540',
+    border: '1px solid rgba(245,184,0,0.2)',
+    borderRadius: 10,
+    fontSize: 12,
+    boxShadow: '0 8px 28px rgba(12,21,64,0.5)',
+    color: '#F1F5F9',
+  },
+  labelStyle: { color: '#F5B800', marginBottom: 4, fontWeight: 600 },
+  cursor: { fill: 'rgba(26,46,143,0.06)' },
+}
+
+const STATUS_CONFIG = {
+  Approved:    { bg: 'bg-emerald-50',  text: 'text-emerald-700', dot: 'bg-emerald-500', ring: 'ring-emerald-200' },
+  Pending:     { bg: 'bg-[#FFFBEB]',  text: 'text-amber-700',   dot: 'bg-[#F5B800]',   ring: 'ring-[#FDE68A]'  },
+  Rejected:    { bg: 'bg-red-50',     text: 'text-red-700',     dot: 'bg-red-500',     ring: 'ring-red-200'    },
+  Present:     { bg: 'bg-emerald-50', text: 'text-emerald-700', dot: 'bg-emerald-500', ring: 'ring-emerald-200' },
+  Absent:      { bg: 'bg-red-50',     text: 'text-red-700',     dot: 'bg-red-500',     ring: 'ring-red-200'    },
+  Leave:       { bg: 'bg-[#EBF0FB]',  text: 'text-navy',        dot: 'bg-navy',        ring: 'ring-[#C5D2F0]'  },
+  Marked:      { bg: 'bg-emerald-50', text: 'text-emerald-700', dot: 'bg-emerald-500', ring: 'ring-emerald-200' },
+  Unmarked:    { bg: 'bg-red-50',     text: 'text-red-700',     dot: 'bg-red-500',     ring: 'ring-red-200'    },
+}
+
+export function StatusBadge({ status }) {
+  const cfg = STATUS_CONFIG[status] ?? STATUS_CONFIG.Pending
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset ${cfg.bg} ${cfg.text} ${cfg.ring}`}>
+      <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
+      {status}
+    </span>
+  )
+}
+
+export function AttPct({ pct, min = 75 }) {
+  const color = pct >= 85 ? '#10B981' : pct >= min ? '#F5B800' : '#EF4444'
+  return (
+    <div className="flex items-center gap-2">
+      <div className="h-1.5 w-20 overflow-hidden rounded-full bg-slate-100">
+        <div className="h-full rounded-full transition-all" style={{ width: `${Math.min(pct, 100)}%`, background: color }} />
+      </div>
+      <span className="text-xs font-bold" style={{ color }}>{pct.toFixed(1)}%</span>
+    </div>
+  )
+}
+
+export function KpiCard({ icon, label, value, sub, delta, accent = '#1A2E8F', delay = 0 }) {
+  const isPos = !delta || delta.startsWith('+')
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: EASE, delay }}
+      className="kpi-tile rounded-2xl"
+    >
+      <div className="h-1 rounded-t-2xl" style={{ background: `linear-gradient(90deg, ${accent}, ${accent}88)` }} />
+      <div className="p-5">
+        <div className="flex items-start justify-between">
+          <div className="grid h-12 w-12 place-items-center rounded-xl text-white flex-shrink-0"
+            style={{ background: `linear-gradient(145deg, ${accent}, ${accent}bb)`, boxShadow: `0 6px 16px -4px ${accent}44` }}>
+            <Icon name={icon} size={20} strokeWidth={2.2} />
+          </div>
+          {delta && (
+            <span className={`flex items-center gap-0.5 rounded-full px-2.5 py-1 text-xs font-bold ring-1 ring-inset ${
+              isPos ? 'bg-[#FFFBEB] text-amber-700 ring-[#FDE68A]' : 'bg-red-50 text-red-600 ring-red-200'
+            }`}>
+              <Icon name={isPos ? 'TrendingUp' : 'TrendingDown'} size={11} strokeWidth={2.5} />
+              {delta}
+            </span>
+          )}
+        </div>
+        <p className="mt-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">{label}</p>
+        <p className="mt-1 text-[28px] font-extrabold leading-none tracking-tight text-navy">{value}</p>
+        {sub && <p className="mt-2 text-xs text-slate-500">{sub}</p>}
+      </div>
+    </motion.div>
+  )
+}

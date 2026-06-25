@@ -1,0 +1,36 @@
+{
+  "name": "spark-erp",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Spark ERP - Student Self-Service Portal",
+  "scripts": {
+    "dev": "vite --port 2020",
+    "student": "vite --port 2020 --open /?role=student",
+    "staff": "vite --port 2021 --open /?role=staff",
+    "admin": "vite --port 2022 --open /?role=admin",
+    "superadmin": "vite --port 2023 --open /?role=superadmin",
+    "build": "vite build",
+    "preview": "vite preview --port 2020"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^4.2.1",
+    "@tsparticles/react": "^4.2.1",
+    "@tsparticles/slim": "^4.2.1",
+    "framer-motion": "^11.3.0",
+    "lucide-react": "^0.408.0",
+    "react": "^18.3.1",
+    "react-countup": "^6.5.3",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
+    "recharts": "^2.12.7",
+    "zustand": "^5.0.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "vite": "^5.3.4"
+  }
+}
